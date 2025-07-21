@@ -1,0 +1,11 @@
+spring:
+  security:
+    user:
+      name: username
+      password: qwe123
+  datasource:
+    url: jdbc:postgresql://localhost:15432/test_db
+    username: username
+    password: qwe123
+server:
+  port: 8081

@@ -1,0 +1,54 @@
+server:
+  port: 8082
+
+synth:
+  core:
+    audit:
+      mode: kafka
+      topic: bishop_audit_topic
+
+spring:
+  application:
+    name: bishop-prototype
+  kafka:
+    bootstrap-servers: localhost:29092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+
+management:
+  server:
+    port: ${server.port}
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health #status of application
+          - metrics #metrics list
+          - prometheus #metrics in prometheus format
+          - env #properties and variables
+          - info #CVS info
+          - heapdump #get heapdump
+          - threaddump #get threaddump
+  info:
+    java:
+      enabled: true
+    os:
+      enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  jmx:
+    metrics:
+      export:
+        enabled: false
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+        step: 1m
+
+logging:
+  level:
+    "ru.t1.synth.core.errorhandling": debug

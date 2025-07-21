@@ -1,0 +1,20 @@
+version: "0.1"
+name: test_env
+
+services:
+  postgres-test:
+    container_name: postgres-test
+    hostname: postgres-test
+    image: postgres:15.0-alpine
+    ports:
+      - "15432:5432"
+    environment:
+      POSTGRES_DB: "test_db"
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: qwe123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  postgres_data:

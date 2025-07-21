@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS time_table (
+    id SERIAL PRIMARY KEY,
+    time VARCHAR(50)
+);
